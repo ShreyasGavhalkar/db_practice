@@ -5,7 +5,9 @@ Base = declarative_base()
 
 
 # goes into config.py
-DATABASE_URI = 'postgresql+psycopg2://postgres:<your password>@localhost:5432/books'
+psswd = input("Enter password\n")
+URL = "postgresql://postgres:"+psswd+"@localhost:5432/postgres"
+DATABASE_URI = 'postgresql+psycopg2://postgres:'+psswd+'@localhost:5432/books'
 
 engine = create_engine(DATABASE_URI)
 

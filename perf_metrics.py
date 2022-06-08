@@ -6,8 +6,8 @@ from sqlalchemy_utils import database_exists, create_database
 from sqlalchemy import *
 import pprint
 Base = declarative_base()
-
-URL = "postgresql://postgres:<your password>@localhost:5432/postgres"
+psswd = input("Enter password\n")
+URL = "postgresql://postgres:"+psswd+"@localhost:5432/postgres"
 
 engine = create_engine(URL)
 

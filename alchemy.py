@@ -51,7 +51,8 @@ def get_session(engine):
     return session
 
 
-engine = get_engine("postgres", "<your password here>",
+psswd = input("Enter password\n")
+engine = get_engine("postgres", psswd,
                     "localhost", "5432", "test1")
 
 session = get_session(engine)
