@@ -15,7 +15,7 @@ engine = create_engine(URL)
 session = sessionmaker(bind=engine)
 # pdb.set_trace()
 s = session()
-q = text("SELECT * FROM pg_stats;")
+q = text("SELECT tablename FROM pg_stats;")
 
 r = engine.execute(q)
 # print(r+"\n\n")all
