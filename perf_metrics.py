@@ -7,7 +7,7 @@ from sqlalchemy import *
 import pprint
 Base = declarative_base()
 
-URL = "postgresql://postgres:AcessPassword@localhost:5432/postgres"
+URL = "postgresql://postgres:<your password>@localhost:5432/postgres"
 
 engine = create_engine(URL)
 
