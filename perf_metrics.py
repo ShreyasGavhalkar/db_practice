@@ -14,9 +14,15 @@ engine = create_engine(URL)
 
 session = sessionmaker(bind=engine)
 # pdb.set_trace()
-
-q = text("SELECT * FROM pg_stat_activity;")
+s = session()
+q = text("SELECT * FROM pg_stats;")
 
 r = engine.execute(q)
-print(r)
-# postgres=# SELECT * FROM pg_stat_activity;
+# print(r+"\n\n")all
+for row in r:  # this works
+    print(row)
+    print("\n")
+with engine.connect() as con:  # and even this works
+    res = con.execute(q)
+    print("columns\n")
+    pprint.pprint(res.fetchall())
