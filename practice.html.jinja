@@ -1,0 +1,13 @@
+{#{%....%}   statement
+{{....}}   expression
+{#....#}   comment
+#}
+
+<ul>
+  {%- for item in l recursive %}
+  <li>{{item,loop.index0}}</li>
+    {%- if item is mapping %}
+      <ul> {{loop(item)}} </ul>
+    {% endif %}
+  {% endfor %}
+</ul>

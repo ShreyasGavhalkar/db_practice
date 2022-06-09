@@ -1,0 +1,6 @@
+enable slow query log in psql: https://www.eversql.com/enable-slow-query-log-postgresql/ (can be limited to a specific database)
+
+enable the same in mysql: https://www.a2hosting.in/kb/developer-corner/mysql/enabling-the-slow-query-log-in-mysql
+
+
+more performance metrics for psql can be accessed in the masterdb called 'postgres' with tables like 'pg_stats'
