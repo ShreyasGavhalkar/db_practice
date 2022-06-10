@@ -13,26 +13,19 @@
 </head>
 <body>
   <h1>
-  <b>Total number of tables are: 4</b>
+  <b>Total number of tables are: {{tables|length}}</b>
   </h1>
 <h2>They are listed below:</h2>
   <table class="center">
+    {%- for item in tables %}
     <tr>
-      <td>table2</td>
+      <td>
+        <a href="{{item}}.html">
+        {{item}}
+        </a>
+      </td>
     </tr>
-    
-    <tr>
-      <td>alembic_version</td>
-    </tr>
-    
-    <tr>
-      <td>books</td>
-    </tr>
-    
-    <tr>
-      <td>table1</td>
-    </tr>
-    
+    {% endfor %}
   </table>
 </body>
 </html>

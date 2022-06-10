@@ -1,15 +1,12 @@
-from sqlalchemy import inspect
-from sqlalchemy import create_engine, Column, Integer, String, Date, Table
+
+from sqlalchemy import create_engine, Column, Integer, String, Date, Table, MetaData, or_, and_
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy_utils import database_exists, create_database
-from sqlalchemy import *
-from jinja2 import Template
-# from sqlalchemy_views import CreateView, DropView
+# from sqlalchemy import *
 from sqlalchemy.dialects.postgresql import MONEY
 import datetime
 import pprint
-
 
 Base = declarative_base()
 
@@ -59,15 +56,6 @@ engine = get_engine("postgres", psswd,
 
 session = get_session(engine)
 print(session)
-
-
-def DBGetTableByName(table_name):
-    metadata = MetaData(engine)
-    try:
-        table = Table(table_name, metadata, autoload=True)
-        return table
-    except NoSuchTableError:
-        return None
 
 
 metadata_obj = MetaData(bind=engine)
@@ -121,24 +109,3 @@ s.close()
 # print("\n\nprinting tables")
 # tables = metadata_obj.tables.keys()
 # print(tables)
-
-print("\n\n")
-
-inspector = inspect(engine)
-schemas = inspector.get_schema_names()
-
-# for schema in schemas:
-#     print("schema: %s" % schema)
-# for table_name in inspector.get_table_names(schema=schema):
-tbls = inspector.get_table_names(schema='public')
-for table_name in tbls:
-    # for column in inspector.get_columns(table_name, schema=schema):
-    #     print("Column: %s" % column)
-    print(table_name)
-
-with open("new_jinja_template.html") as f:
-    tmplt = Template(f.read())
-of = tmplt.render(tables=tbls)
-
-with open("output.html", "w") as f:
-    f.write(of)

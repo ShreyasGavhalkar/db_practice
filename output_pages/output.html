@@ -13,15 +13,18 @@
 </head>
 <body>
   <h1>
-  <b>Total number of tables are: {{tables|length}}</b>
+  <b>Total number of tables are: 1</b>
   </h1>
 <h2>They are listed below:</h2>
   <table class="center">
-    {%- for item in tables %}
     <tr>
-      <td>{{item}}</td>
+      <td>
+        <a href="company.html">
+        company
+        </a>
+      </td>
     </tr>
-    {% endfor %}
+    
   </table>
 </body>
 </html>
