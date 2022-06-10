@@ -15,7 +15,12 @@
   <h1>
   <b>Total number of tables are: {{tables|length}}</b>
   </h1>
-<h2>They are listed below:</h2>
+<h2>{%- if tables|length == 0 %}
+      No tables present
+    {%- else %}
+      They are listed below:
+    {%- endif %}
+  </h2>
   <table class="center">
     {%- for item in tables %}
     <tr>
