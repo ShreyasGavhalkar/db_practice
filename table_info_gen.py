@@ -15,12 +15,12 @@ metadata_obj = MetaData(bind=engine)
 insp = inspect(engine)
 schemas = insp.get_schema_names()
 tbls = insp.get_table_names(schema='public')
-with open("templates/new_jinja_template.html") as f:
+with open("templates/new_jinja_template.html.jinja") as f:
     tmplt = Template(f.read())
 of = tmplt.render(tables=tbls)
 
 
-with open("templates/tables_template.html") as f:
+with open("templates/tables_template.html.jinja") as f:
     t = Template(f.read())
     for i in tbls:
         cols = insp.get_columns(i)
