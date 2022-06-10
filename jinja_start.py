@@ -11,7 +11,8 @@ print(m)
 
 print("\n\n")
 
-l = [1, {"shreyas": "gavhalkar", "vishwakarma": "college"}, 1.4, True]
+lt = [1, {"shreyas": "gavhalkar", "vishwakarma": "college"}, 1.4, True]
+
 with open("practice.html.jinja") as f:
     tmp = Template(f.read())
-print(tmp.render(l=l))
+print(tmp.render(l=lt))

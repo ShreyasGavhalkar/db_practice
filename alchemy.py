@@ -1,8 +1,10 @@
+from sqlalchemy import inspect
 from sqlalchemy import create_engine, Column, Integer, String, Date, Table
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy_utils import database_exists, create_database
 from sqlalchemy import *
+from jinja2 import Template
 # from sqlalchemy_views import CreateView, DropView
 from sqlalchemy.dialects.postgresql import MONEY
 import datetime
@@ -116,6 +118,27 @@ pprint.pprint(s.query(table2).filter(or_(table2.pages > 700,
 # engine.execute(q)
 # engine.execute(delete(table2).where(table2.id == 4))
 s.close()
-tables = metadata_obj.tables['table2']
-print("*********************************")
-print(tables)
+# print("\n\nprinting tables")
+# tables = metadata_obj.tables.keys()
+# print(tables)
+
+print("\n\n")
+
+inspector = inspect(engine)
+schemas = inspector.get_schema_names()
+
+# for schema in schemas:
+#     print("schema: %s" % schema)
+# for table_name in inspector.get_table_names(schema=schema):
+tbls = inspector.get_table_names(schema='public')
+for table_name in tbls:
+    # for column in inspector.get_columns(table_name, schema=schema):
+    #     print("Column: %s" % column)
+    print(table_name)
+
+with open("new_jinja_template.html") as f:
+    tmplt = Template(f.read())
+of = tmplt.render(tables=tbls)
+
+with open("output.html", "w") as f:
+    f.write(of)
