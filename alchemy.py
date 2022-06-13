@@ -109,3 +109,6 @@ s.close()
 # print("\n\nprinting tables")
 # tables = metadata_obj.tables.keys()
 # print(tables)
+
+
+print(engine.execute("SELECT routine_schema, routine_name FROM information_schema.routines WHERE routine_type = 'PROCEDURE';").fetchall())
